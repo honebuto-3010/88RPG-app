@@ -13,7 +13,7 @@ const urlsToCache = [
     "./icon-192.png",
     "./icon-512.png",
     "./icon-180.png",
-    "./images/overview-map-01.png"
+    "./overview-map-01.png"
 ];
 
 self.addEventListener("activate", event => {
