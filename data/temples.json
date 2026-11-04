@@ -1,0 +1,186 @@
+[
+  {
+    "id": 1,
+    "name": "霊山寺",
+    "kana": "りょうぜんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 2,
+    "name": "極楽寺",
+    "kana": "ごくらくじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 3,
+    "name": "金泉寺",
+    "kana": "こんせんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 4,
+    "name": "大日寺",
+    "kana": "だいにちじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 5,
+    "name": "地蔵寺",
+    "kana": "じぞうじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 6,
+    "name": "安楽寺",
+    "kana": "あんらくじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 7,
+    "name": "十楽寺",
+    "kana": "じゅうらくじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 8,
+    "name": "熊谷寺",
+    "kana": "くまだにじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 9,
+    "name": "法輪寺",
+    "kana": "ほうりんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 10,
+    "name": "切幡寺",
+    "kana": "きりはたじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 11,
+    "name": "藤井寺",
+    "kana": "ふじいでら",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 12,
+    "name": "焼山寺",
+    "kana": "しょうさんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 13,
+    "name": "大日寺",
+    "kana": "だいにちじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 14,
+    "name": "常楽寺",
+    "kana": "じょうらくじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 15,
+    "name": "国分寺",
+    "kana": "こくぶんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 16,
+    "name": "観音寺",
+    "kana": "かんのんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 17,
+    "name": "井戸寺",
+    "kana": "いどじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 18,
+    "name": "恩山寺",
+    "kana": "おんざんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 19,
+    "name": "立江寺",
+    "kana": "たつえじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 20,
+    "name": "鶴林寺",
+    "kana": "かくりんじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 21,
+    "name": "太龍寺",
+    "kana": "たいりゅうじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 22,
+    "name": "平等寺",
+    "kana": "びょうどうじ",
+    "prefecture": "徳島",
+    "event": "",
+    "recovery": 0
+  },
+  {
+    "id": 23,
+    "name": "薬王寺",
+    "kana": "やくおうじ",
+    "prefecture": "徳島",
+    "event": "阿波おどりとすだちを楽しんだ",
+    "recovery": 3
+  }
+]

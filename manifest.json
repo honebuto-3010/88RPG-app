@@ -1,0 +1,22 @@
+{
+  "name": "Shikoku Henro RPG",
+  "short_name": "Henro RPG",
+  "description": "四国八十八ヶ所を巡るドラクエ風お遍路RPG",
+  "start_url": "./title.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0038a8",
+  "theme_color": "#0038a8",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "iamges/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

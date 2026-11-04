@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/images/icon-180.png">
+    <meta name="theme-color" content="#0038a8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四国遍路RPG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Shikoku Henro RPG</h1>
+    </header>
+
+
+    <div id="game-screen">
+        <section class="rpg-window">
+            <h2>旅の状況</h2>
+
+            <p id="temple-number">第1番</p>
+
+            <p id="temple-name">霊山寺</p>
+
+            <hr>
+
+            <p id="hp">体力 : 10 / 10</p>
+            <p id="turn">0日目</p>
+            <p id="stamps">御朱印 : 1 / 88</p>
+            <p id="clear-count">結願回数 : 0回</p>
+            <p id="area-name">
+                現在 : 徳島エリア
+            </p>
+        </section>
+        <section class="rpg-window" id="event-window">
+            <h2>イベントログ</h2>
+
+            <p id="event-log">
+                四国遍路の旅が始まりました
+            </p>
+        </section>
+
+    </div>
+
+    <div id="map-screen">
+        <section class="rpg-window">
+            <h2>遍路マップ</h2>
+
+            <div id="map-container">
+
+                <img id="map-image" src="images/overview-map-01.png" alt="四国遍路マップ">
+
+            </div>
+            <div id="progress-map">
+                <p id="awa-progress"></p>
+                <p id="tosa-progress"></p>
+                <p id="iyo-progress"></p>
+                <p id="sanuki-progress"></p>
+
+                <br>
+
+                <p id="current-temple"></p>
+                <p id="remaining-temples"></p>
+                <p id="total-progress"></p>
+            </div>
+        </section>
+    </div>
+    <!-- メニュー画面 -->
+<div id="menu-screen">
+
+    <section class="rpg-window">
+
+        <h2>メニュー</h2>
+
+        <button id="save-button">
+            セーブ
+        </button>
+
+        <button id="load-button">
+            ロード
+        </button>
+
+        <button id="title-button">
+            タイトルへ戻る
+        </button>
+
+        <button id="restart-button">
+            はじめから
+        </button>
+
+    </section>
+
+</div>
+
+<!-- 下固定バー -->
+<footer id="control-bar">
+
+    <button id="roll-button">
+        🎲
+    </button>
+
+    <button id="omikuji-button">
+        ⛩
+    </button>
+
+    <button id="map-tab">
+        🗺
+    </button>
+
+    <button id="menu-button">
+        ⚙
+    </button>
+
+</footer>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+
+                console.log("Service Worker 登録完了");
+
+            });
+
+    });
+
+}
+
+
+</script>
+</body>
+
+</html>

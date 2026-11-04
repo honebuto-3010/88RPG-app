@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/images/icon-180.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四国遍路RPG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/title.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <main class="title-screen">
+
+        <section class="title-window">
+
+            <h1>
+                四国遍路RPG
+            </h1>
+
+            <p class="subtitle">
+                八十八ヶ所を巡る旅
+            </p>
+
+        </section>
+        <section class="menu-window">
+
+            <div id="new-game" class="menu-item active">
+                ▶ はじめから
+            </div>
+
+            <div id="continue-game" class="menu-item">
+                　つづきから
+            </div>
+
+            <div id="setting" class="menu-item">
+                　せってい
+            </div>
+
+            <div id="quit" class="menu-item">
+                　おわる
+            </div>
+
+        </section>
+
+        <section class="controller-window">
+
+            <div class="dpad">
+
+                <button id="up-btn">▲</button>
+
+
+
+                <button id="down-btn">▼</button>
+
+            </div>
+
+            <button id="enter-btn">
+                決定
+            </button>
+
+        </section>
+
+        <footer>
+
+            <p>
+                © Henro games
+            </p>
+
+        </footer>
+
+    </main>
+
+    <div id="settings-panel" style="display:none;">
+
+            <div class="title-window">
+
+                <h2>せってい</h2>
+
+                <div id="toggle-bgm" class="setting-item">
+                    ▶ BGM :
+                    <span id="bgm-status">
+                        ON
+                    </span>
+                </div>
+
+                <div id="toggle-se" class="setting-item">
+                    　SE :
+                    <span id="se-status">
+                        ON
+                    </span>
+                </div>
+
+                <div id="close-settings" class="setting-item">
+                    　もどる
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        if ("serviceWorker" in navigator) {
+
+            navigator.serviceWorker.register("service-worker.js");
+
+            navigator.serviceWorker.addEventListener(
+                "controllerchange",
+                () => {
+                    window.location.reload();
+                }
+            );
+
+        }
+    </script>
+    <script src="js/audio.js"></script>
+    <script src="js/title.js"></script>
+</body>
+
+</html>

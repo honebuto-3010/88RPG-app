@@ -1,0 +1,273 @@
+@charset "utf-8";
+
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* ==========================
+   BODY
+========================== */
+
+body {
+
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+
+    background: #0038a8;
+
+    color: #ffffff;
+
+    font-family:
+        "MS Gothic",
+        monospace;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+/* ==========================
+   全体
+========================== */
+
+
+.title-screen {
+
+    width: 90%;
+    max-width: 600px;
+}
+
+/* ==========================
+   タイトル枠
+========================== */
+
+.title-window {
+
+    position: relative;
+
+    background: #001e9a;
+
+    border: 4px solid #ffffff;
+
+    padding: 24px;
+
+    margin-bottom: 24px;
+
+    text-align: center;
+}
+
+.title-window::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+
+    border: 2px solid #ffffff;
+}
+
+.title-window h1 {
+
+    margin: 0;
+
+    font-size: 36px;
+}
+
+.subtitle {
+
+    margin-top: 12px;
+
+    font-size: 16px;
+}
+
+/* ==========================
+   メニュー枠
+========================== */
+
+.menu-window {
+
+    position: relative;
+
+    background: #001e9a;
+
+    border: 4px solid #ffffff;
+
+    padding: 20px;
+}
+
+.menu-window::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+
+    border: 2px solid #ffffff;
+}
+
+.menu-item {
+
+    padding: 12px 0;
+
+    font-size: 22px;
+}
+
+.active {
+
+    color: #ffffff;
+}
+
+/* ==========================
+   footer
+========================== */
+
+footer {
+
+    text-align: center;
+
+    margin-top: 24px;
+
+    font-size: 14px;
+}
+
+/* ==========================
+   仮想コントローラー
+========================== */
+
+.controller-window {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dpad-middle {
+    display: flex;
+    gap: 40px;
+}
+
+.dpad button,
+#enter-btn {
+
+    background: #001e9a;
+
+    color: #ffffff;
+
+    border: 4px solid #ffffff;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+}
+
+#enter-btn {
+
+    margin-top: 20px;
+
+    width: 120px;
+
+    height: 50px;
+
+    font-size: 16px;
+}
+/* ==========================
+   スマホ対応
+========================== */
+
+@media (max-width: 768px) {
+
+    .title-screen {
+
+        width: 95%;
+
+    }
+
+    .title-window {
+
+        padding: 16px;
+
+        margin-bottom: 16px;
+
+    }
+
+    .title-window h1 {
+
+        font-size: 28px;
+
+    }
+
+    .subtitle {
+
+        font-size: 14px;
+
+    }
+
+    .menu-item {
+
+        padding: 16px 0;
+
+        font-size: 18px;
+
+    }
+
+    footer {
+
+        font-size: 12px;
+
+    }
+
+    .dpad-middle {
+    gap: 24px;
+}
+
+.dpad button,
+#enter-btn {
+
+    width: 60px;
+    height: 60px;
+
+    font-size: 20px;
+}
+
+#enter-btn {
+
+    width: 150px;
+}
+
+}
