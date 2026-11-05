@@ -19,7 +19,6 @@ let settingsMode = false;
 
 const settingItems = [
     "toggle-bgm",
-    "toggle-se",
     "close-settings"
 ];
 
@@ -53,35 +52,48 @@ function updateMenu() {
    設定カーソル
 ========================== */
 
-function updateSettingsCursor() {
 
-    settingItems.forEach(id => {
-
-        const element =
-            document.getElementById(id);
-
-        if (!element) return;
-
-        element.style.backgroundcolor = "";
-        element.style.color = "";
-    });
-
-    const current =
-        document.getElementById(
-            settingItems[settingIndex]
-        );
-
-    if (current) {
-
-        current.style.backgroundcolor =
-            "white";
-
-        current.style.color =
-            "#0000AA";    
-    }
-}
 
 updateMenu();
+
+function updateSettingsDisplay() {
+
+    console.log(
+        "settingIndex",
+        settingIndex
+    );
+
+    const enabled =
+        localStorage.getItem("bgmEnabled") !== "false";
+
+    document.getElementById("toggle-bgm").textContent =
+        (settingIndex === 0 ? "▶ " : "　") +
+        "BGM : " +
+        (enabled ? "ON" : "OFF");
+
+    document.getElementById("close-settings").textContent =
+        (settingIndex === 1 ? "▶ " : "　") +
+        "もどる";
+}
+
+function moveSettingsCursor(direction) {
+
+    if (direction === "up") {
+        settingsCursor--;
+        if (settingsCursor < 0) {
+            settingsCursor = 1;
+        }
+    }
+
+    if (direction === "down") {
+        settingsCursor++;
+        if (settingsCursor > 1) {
+            settingsCursor = 0;
+        }
+    }
+
+    updateSettingsDisplay();
+}
 
 /* ==========================
    タイトルBGM
@@ -167,7 +179,7 @@ function openSettings() {
         .getElementById("settings-panel")
         .style.display = "block";
 
-    updateSettingsCursor();
+    updateSettingsDisplay();
 }
 
 /* ==========================
@@ -203,7 +215,7 @@ document.addEventListener(
                     settingIndex
                 );
 
-                updateSettingsCursor();
+                updateSettingsDisplay();
                 return;
             }
 
@@ -221,11 +233,17 @@ document.addEventListener(
                         settingItems.length - 1;
                 }
 
-                updateSettingsCursor();
+                updateSettingsDisplay();
                 return;
             }
 
             if (event.key === "Enter") {
+
+                 console.log("settingIndex =", settingIndex);
+                 console.log(
+                      "選択ID =",
+                      settingItems[settingIndex]
+                );
 
                 playSE("enter");
 
@@ -325,7 +343,7 @@ document
                     settingItems.length - 1;
             }
 
-            updateSettingsCursor();
+            updateSettingsDisplay();
             return;
         }
 
@@ -362,7 +380,7 @@ document
                 settingIndex = 0;
             }
 
-            updateSettingsCursor();
+            updateSettingsDisplay();
             return;
         }
 
@@ -434,13 +452,6 @@ let bgmEnabled =
         "bgmEnabled"
     ) !== "false";
 
-function updateBgmStatus() {
-
-    document
-        .getElementById("bgm-status")
-        .textContent =
-        bgmEnabled ? "ON" : "OFF";
-}
 
 document
     .getElementById("toggle-bgm")
@@ -462,7 +473,9 @@ document
             stopAllBGM();
         }
 
-        updateBgmStatus();
+        console.log("BGM", bgmEnabled);
+
+        updateSettingsDisplay();
     });
 
 /* ==========================
@@ -474,48 +487,36 @@ let seEnabled =
         "seEnabled"
     ) !== "false";
 
-function updateSeStatus() {
 
-    document
-        .getElementById("se-status")
-        .textContent =
-        seEnabled ? "ON" : "OFF";
-}
-
-document
-    .getElementById("toggle-se")
-    .addEventListener("click", () => {
-
-        seEnabled = !seEnabled;
-
-        localStorage.setItem(
-            "seEnabled",
-            seEnabled
-        );
-
-        updateSeStatus();
-    });
 
 /* ==========================
    設定を閉じる
 ========================== */
+console.log("close登録前");
 
 document
     .getElementById("close-settings")
     .addEventListener("click", () => {
+
+        console.log("戻る実行");
 
         settingsMode = false;
 
         document
             .getElementById("settings-panel")
             .style.display = "none";
-    });
 
+            selectedIndex = 2;
+
+            updateMenu();
+
+    });
+console.log("登録完了")
 /* ==========================
    初期化
 ========================== */
 
 updateBgmStatus();
-updateSeStatus();
+
 
 
