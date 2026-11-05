@@ -4,6 +4,14 @@ function getClearCount() {
         localStorage.getItem("clearCount")
     ) || 0;
 }
+
+let clearModalOpen = false;
+
+let endingMode = false;
+let endingStep = 0;
+
+let gameOverMode = false;
+let gameOverStep = 0;
 /* ===================================
    GAME STATE
 =================================== */
@@ -12,7 +20,7 @@ const gameState = {
 
     currentTemple: 1,
 
-    hp: 10,
+    hp: 3,
 
     maxHp: 10,
 
@@ -22,7 +30,9 @@ const gameState = {
 
     lastDice: 0,
 
-    eventLog: "四国遍路の旅が始まりました"
+    eventLog: "四国遍路の旅が始まりました",
+
+    gameClear: false
 
 };
 
