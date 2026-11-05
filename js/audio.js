@@ -111,29 +111,48 @@ function playSE(name) {
 // ======================
 // エリア踏破・結願演出
 // ======================
+let clearAudio = null;
 
 function playClearEvent() {
 
-    console.log("clear開始");
-
     stopAllBGM();
 
-    const audio =
+    clearAudio =
         new Audio("sounds/clear.mp3");
 
-    audio.volume = 0.8;
+    clearAudio.volume = 0.8;
 
-    audio.addEventListener("ended", () => {
+    clearAudio.addEventListener(
+        "ended",
+        () => {
 
-        console.log("clear終了");
+            console.log("clear終了");
 
-        playBGM("game");
+            playBGM("game");
+
+        }
+    );
+
+    clearAudio.play().catch(error => {
+
+        console.log(
+            "clear再生失敗:",
+            error
+        );
 
     });
+}
 
-    audio.play().catch(error => {
-        console.log("clear再生失敗:", error);
-    });
+function stopClearEvent() {
+
+    if (!clearAudio) return;
+
+    clearAudio.pause();
+
+    clearAudio.currentTime = 0;
+
+    clearAudio = null;
+
 }
 // ======================
 // BGM ON/OFF
