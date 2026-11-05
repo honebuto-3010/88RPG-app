@@ -263,7 +263,15 @@ document.getElementById("omikuji-button")
 
 function rollDice() {
 
-    playBGM ("game")
+    if (gameState.gameClear) {
+        return;
+    }
+
+    if (!window.gameBgmStarted) {
+        playBGM("game");
+        window.gameBgmStarted = true;
+        }
+
     playSE("dice");
 
     const dice =
@@ -276,12 +284,18 @@ function rollDice() {
     const previousTemple =
         gameState.currentTemple;
 
-    movePlayer(dice);
+    const gameOver =
+          movePlayer(dice);
+
+    if (gameOver) {
+            render();
+            return;
+    }
 
     const special =
         checkSpecialEvent(previousTemple);
 
-    if (!special) {
+    if (!special && !gameOverMode) {
 
         const temple =
             temples[gameState.currentTemple - 1];
@@ -336,6 +350,10 @@ function movePlayer(dice) {
         
         gameState.stamps = 88;
 
+        gameState.gameClear = true;
+
+        showEndingModal();
+
         const clearCount =
             getClearCount() + 1;
 
@@ -371,15 +389,19 @@ function movePlayer(dice) {
     const mountainTemples = [
         3,
         5,
+        7,
         9,
         12,
         14,
         16,
+        18,
         21,
+        24,
         27,
         30,
         34,
         37,
+        40,
         42,
         46,
         51,
@@ -407,9 +429,9 @@ function movePlayer(dice) {
     }
 
     const healTemples = [
-        6, //安楽寺
+        //6, //安楽寺
         46,//浄瑠璃寺
-        57//栄福寺
+        //57//栄福寺
     ];
 
     if (healTemples.includes(gameState.currentTemple)) {
@@ -419,22 +441,35 @@ function movePlayer(dice) {
         `${temple.name}で休息し体力が回復した`;
     }
 
+
+
     if (gameState.hp > gameState.maxHp) {
         gameState.hp = gameState.maxHp;
     }
 
-    if (gameState.hp <= 0) {
+    if (gameState.hp <= 0 &&
+        !gameOverMode
+    ) {
+        
+        console.log("HPO検出");
+
         gameState.hp = 0;
 
-        gameState.eventLog = 
-             "力尽きてしまった.....。";
+        gameState.eventLog =
+        "力尽きてしまった.....。";
 
         document.getElementById("roll-button")
              .disabled = true;
 
-           
-    }
+        document.getElementById("omikuji-button")
+             .disabled = true;
+             
+        showGameOverModal();
 
+        return true;
+    }
+    
+    return false;
 }
 
 function restartGame() {
@@ -525,6 +560,10 @@ document
 
 function drawOmikuji() {
 
+    if (gameState.gameClear) {
+         return;
+    }
+
     playSE("omikuji");
 
     const result =
@@ -605,6 +644,11 @@ function checkSpecialEvent(previousTemple) {
             "阿波踊りを楽しんだ！\n" +
             "HPが1回復した！";
 
+        showClearModal(
+           "🎉 徳島踏破",
+           "阿波踊りを楽しんだ！\nHPが1回復した！"
+        );    
+
         return true;
     }
 
@@ -625,6 +669,11 @@ function checkSpecialEvent(previousTemple) {
             "カツオのたたきをご馳走になった！\n" +
             "HPが1回復した！";
 
+        showClearModal(
+            "🎉 高知踏破",
+            "修行の道場を踏破した！\nHPが2回復した！"
+        );    
+
         return true;
     }
 
@@ -636,8 +685,8 @@ function checkSpecialEvent(previousTemple) {
         playClearEvent();
 
         gameState.hp = Math.min(
-            gameState.hp + 2,
-            gameState.maxHp
+            gameState.hp += 1,
+            gameState.maxHp += 1
         );
 
         gameState.eventLog =
@@ -645,12 +694,18 @@ function checkSpecialEvent(previousTemple) {
             "道後温泉で疲れを癒した！\n" +
             "HPが2回復した！";
 
+        showClearModal(
+                "🎉 愛媛踏破",
+                "菩提の道場を踏破した！\n最大HPが1上昇した！"
+        );    
+
+
         return true;
     }
 
     if (
-        previousTemple < 88 &&
-        gameState.currentTemple >= 88
+        previousTemple < 87 &&
+        gameState.currentTemple >= 87
     ) {
 
         playClearEvent();
@@ -658,6 +713,10 @@ function checkSpecialEvent(previousTemple) {
         gameState.eventLog =
             "🎉 香川踏破！\n" +
             "讃岐うどんを堪能した！";
+        showClearModal(
+            "🎉 香川踏破",
+            "涅槃の道場を踏破した！\n\nついに最後の札所\n大窪寺が目前だ！"
+        );    
 
         return true;
     }
@@ -665,6 +724,138 @@ function checkSpecialEvent(previousTemple) {
     return false;
 }
 
+function showEndingModal() {
+
+    endingMode = true;
+    endingStep = 1;
+
+    document.getElementById(
+        "clear-title"
+    ).textContent =
+        "🎉 結願達成 🎉";
+
+    document.getElementById(
+        "clear-message"
+    ).textContent =
+        "四国八十八ヶ所の\n巡礼を終えました。\n\n" +
+        "巡礼日数：" +
+        gameState.turn +
+        "日";
+
+    document.getElementById(
+        "clear-modal"
+    ).style.display = "flex";
+}
+
+function nextEndingStep() {
+
+    endingStep++;
+
+    if (endingStep === 2) {
+
+        document.getElementById(
+            "clear-title"
+        ).textContent =
+            "おめでとう！";
+
+        document.getElementById(
+            "clear-message"
+        ).textContent =
+            "あなたは\n四国遍路を結願しました。\n\n" +
+            "長い旅路の中で\n多くの札所を巡礼しました。";
+
+        return;
+    }
+
+    if (endingStep === 3) {
+
+        document.getElementById(
+            "clear-title"
+        ).textContent =
+            "巡礼の記録";
+
+        document.getElementById(
+            "clear-message"
+        ).textContent =
+            "残りHP：" +
+            gameState.hp +
+            "\n\n" +
+            "結願回数：" +
+            getClearCount() +
+            "回\n\n" +
+            "ありがとうございました！";
+
+        return;
+    }
+
+    if (endingStep >= 4) {
+
+        location.href =
+            "title.html";
+
+    }
+
+}
+
+
+function showGameOverModal() {
+
+    gameOverMode = true;
+    gameOverStep = 1;
+
+    document.getElementById(
+        "clear-title"
+    ).textContent =
+        "巡礼中断";
+
+    document.getElementById(
+        "clear-message"
+    ).textContent =
+        "あなたは力尽きた。\n\n" +
+        "第" +
+        gameState.currentTemple +
+        "番札所で\n" +
+        "巡礼を終えることになった。";
+
+    document.getElementById(
+        "clear-modal"
+    ).style.display = "flex";
+
+}
+
+function nextGameOverStep() {
+
+    gameOverStep++;
+
+    if (gameOverStep === 2) {
+
+        document.getElementById(
+            "clear-title"
+        ).textContent =
+            "巡礼の記録";
+
+        document.getElementById(
+            "clear-message"
+        ).textContent =
+            "巡礼日数：" +
+            gameState.turn +
+            "日\n\n" +
+            "納経札所数：" +
+            gameState.stamps +
+            "ヶ所\n\n" +
+            "またいつの日か\nお遍路の旅へ...";
+
+        return;
+    }
+
+    if (gameOverStep >= 3) {
+
+        location.href =
+            "title.html";
+
+    }
+
+}
 
 const gameScreen = document.getElementById("game-screen");
 const mapScreen = document.getElementById("map-screen");
@@ -734,19 +925,76 @@ menuButton.addEventListener("click", () => {
 showGameScreen();
 
 window.addEventListener("load", () => {
-
+    console.log("ゲームBGM開始");
     playBGM("game");
 
 });
 
-document.addEventListener("visibilitychange", () => {
-
+document.addEventListener("visibilitycharge", () => {
     if (document.hidden) {
         stopAllBGM();
     }
-
 });
 
 window.addEventListener("pagehide", () => {
     stopAllBGM();
 });
+
+
+
+function showClearModal(title,message) {
+
+    clearModalOpen = true;
+
+    document.getElementById(
+        "clear-title"
+    ).textContent = title;
+
+    document.getElementById(
+        "clear-message"
+    ).textContent = message;
+
+    document.getElementById(
+        "clear-modal"
+    ).style.display = "flex";
+
+}
+
+function closeClearModal() {
+
+    clearModalOpen = false;
+
+    document.getElementById(
+        "clear-modal"
+    ).style.display = "none";
+
+    stopClearEvent();
+
+    playBGM("game");
+
+}
+
+document
+    .getElementById("clear-modal")
+    .addEventListener("click", () => {
+
+        playSE("enter");
+
+        if (endingMode) {
+
+            nextEndingStep();
+
+            return;
+        }
+
+        if (gameOverMode) {
+
+            nextGameOverStep();
+
+            return;
+
+        }
+
+        closeClearModal();
+
+    });
