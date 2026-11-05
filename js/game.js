@@ -253,6 +253,7 @@ document.getElementById("omikuji-button")
 
 function rollDice() {
 
+    playBGM ("game")
     playSE("dice");
 
     const dice =
