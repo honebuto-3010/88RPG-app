@@ -729,3 +729,14 @@ window.addEventListener("load", () => {
 
 });
 
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+        stopAllBGM();
+    }
+
+});
+
+window.addEventListener("pagehide", () => {
+    stopAllBGM();
+});
