@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <main class="title-screen">
+   <main class="title-screen">
 
         <section class="title-window">
 
@@ -29,6 +29,8 @@
 
         </section>
         <section class="menu-window">
+
+            <div id="main-menu">
 
             <div id="new-game" class="menu-item active">
                 ▶ はじめから
@@ -45,6 +47,21 @@
             <div id="quit" class="menu-item">
                 　おわる
             </div>
+
+        </div>
+
+        <div id="settings-menu" style="display:none;">
+        
+           <div id="toggle-bgm" class="setting-item">
+                ▶ BGM : ON
+
+            </div>
+
+            <div id="close-settings" class="setting-item">
+                　もどる
+            </div>
+
+        </div>
 
         </section>
 
@@ -75,22 +92,6 @@
         </footer>
 
     </main>
-
-    <div id="settings-panel" style="display:none;">
-
-            <div class="title-window">
-
-                <h2>せってい</h2>
-
-                <div id="toggle-bgm" class="setting-item">
-                    ▶ BGM : ON
-                </div>
-                <div id="close-settings" class="setting-item">
-                    　もどる
-                </div>
-
-            </div>
-    </div>
     <script>
         if ("serviceWorker" in navigator) {
 
