@@ -614,6 +614,8 @@ function drawOmikuji() {
 
         document.getElementById("roll-button")
             .disabled = true;
+
+        showGameOverModal();
     }
     render();      
 }
