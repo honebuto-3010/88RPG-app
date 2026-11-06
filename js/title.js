@@ -169,6 +169,9 @@ document
 
 function openSettings() {
 
+    console.log("openSettings実行");
+
+
     playSE("enter");
 
     settingsMode = true;
@@ -176,9 +179,14 @@ function openSettings() {
     settingIndex = 0;
 
     document
-        .getElementById("settings-panel")
-        .style.display = "block";
+        .getElementById("main-menu")
+        .style.display = "none";
 
+    document
+        .getElementById("settings-menu")
+        .style.display = "block";
+        
+        
     updateSettingsDisplay();
 }
 
@@ -503,12 +511,16 @@ document
         settingsMode = false;
 
         document
-            .getElementById("settings-panel")
+            .getElementById("settings-menu")
             .style.display = "none";
 
-            selectedIndex = 2;
+        document
+            .getElementById("main-menu")
+            .style.display = "block";
 
-            updateMenu();
+        selectedIndex = 2;
+
+        updateMenu();
 
     });
 console.log("登録完了")
@@ -517,6 +529,7 @@ console.log("登録完了")
 ========================== */
 
 updateBgmStatus();
+
 
 
 
