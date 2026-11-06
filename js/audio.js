@@ -5,12 +5,18 @@ console.log("audio.js 読み込み成功");
 
 const bgm = {
     title: new Audio("sounds/title.mp3"),
-    game: new Audio("sounds/game.mp3")
+    game: new Audio("sounds/game.mp3"),
+    gameover: new Audio("sounds/gameover.mp3")
 };
+
+const audio = new Audio("sounds/ending.mp3");
+
+bgm.title.loop = true;
+bgm.game.loop = true;
+bgm.gameover.loop = false;
 
 // BGM共通設定
 Object.values(bgm).forEach(audio => {
-    audio.loop = true;
     audio.volume = 0.5;
 });
 
@@ -120,38 +126,39 @@ function playClearEvent() {
     clearAudio =
         new Audio("sounds/clear.mp3");
 
-    clearAudio.volume = 0.8;
+    clearAudio.volume = 0.8;    
 
-    clearAudio.addEventListener(
-        "ended",
-        () => {
+    clearAudio.play();
+   
+}
 
-            console.log("clear終了");
+function playEndingEvent() {
 
-            playBGM("game");
+    stopAllBGM();
 
-        }
-    );
+    eventAudio =
+        new Audio("sounds/ending.mp3");
 
-    clearAudio.play().catch(error => {
+    eventAudio.volume = 0.8;
+
+    eventAudio.play().catch(error => {
 
         console.log(
-            "clear再生失敗:",
+            "ending再生失敗:",
             error
         );
 
     });
 }
 
-function stopClearEvent() {
+function stopEventAudio() {
 
-    if (!clearAudio) return;
+    if (eventAudio) {
 
-    clearAudio.pause();
+        eventAudio.pause();
+        eventAudio.currentTime = 0;
 
-    clearAudio.currentTime = 0;
-
-    clearAudio = null;
+    }
 
 }
 // ======================
