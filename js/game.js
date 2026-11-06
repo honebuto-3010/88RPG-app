@@ -344,7 +344,7 @@ function movePlayer(dice) {
 
     if (gameState.currentTemple >= 88) {
 
-        playClearEvent();
+        playEndingEvent();
 
         gameState.currentTemple = 88;
         
@@ -387,33 +387,16 @@ function movePlayer(dice) {
     console.log("stamps=", gameState.stamps);
 
     const mountainTemples = [
-        3,
-        5,
         7,
-        9,
-        12,
-        14,
         16,
-        18,
-        21,
         24,
-        27,
-        30,
-        34,
-        37,
-        40,
-        42,
-        46,
-        51,
-        53,
-        58,
+        33,
+        41,
+        52,
         60,
-        66,
-        72,
-        73,
-        80,
-        83,
-        86,
+        69,
+        77,
+        85,
     ];
 
     if (
@@ -429,9 +412,9 @@ function movePlayer(dice) {
     }
 
     const healTemples = [
-        //6, //安楽寺
+        6, //安楽寺
         46,//浄瑠璃寺
-        //57//栄福寺
+        57//栄福寺
     ];
 
     if (healTemples.includes(gameState.currentTemple)) {
@@ -448,10 +431,12 @@ function movePlayer(dice) {
     }
 
     if (gameState.hp <= 0 &&
-        !gameOverMode
-    ) {
+        !gameOverMode) {
         
-        console.log("HPO検出");
+        console.log("GAMEOVER",
+            gameState.hp,
+            gameOverMode
+        );
 
         gameState.hp = 0;
 
@@ -583,10 +568,10 @@ function drawOmikuji() {
     }
     else {
 
-        gameState.hp--;
+        gameState.hp -= 2;
 
         gameState.eventLog =
-               "😢凶！ 疲れてHP-1";
+               "😢凶！ 疲れてHP-2";
     }
 
     if (gameState.hp > gameState.maxHp) {
@@ -605,7 +590,14 @@ function drawOmikuji() {
           .disabled = false;
     
             // HP0ならゲームオーバー
-    if (gameState.hp <= 0) {
+
+    if (gameState.hp <= 0 && !gameOverMode) {
+
+        console.log(
+        "GAMEOVER",
+        gameState.hp,
+        gameOverMode
+        );
 
         gameState.hp = 0;
 
@@ -615,7 +607,12 @@ function drawOmikuji() {
         document.getElementById("roll-button")
             .disabled = true;
 
+        document.getElementById("omikuji-button")
+            .disabled = true;    
+
         showGameOverModal();
+        
+        return true;
     }
     render();      
 }
@@ -707,7 +704,8 @@ function checkSpecialEvent(previousTemple) {
 
     if (
         previousTemple < 87 &&
-        gameState.currentTemple >= 87
+        gameState.currentTemple >= 87 &&
+        gameState.currentTemple < 88
     ) {
 
         playClearEvent();
@@ -802,6 +800,10 @@ function nextEndingStep() {
 
 function showGameOverModal() {
 
+    stopAllBGM();
+
+    playBGM("gameover");
+
     gameOverMode = true;
     gameOverStep = 1;
 
@@ -823,9 +825,29 @@ function showGameOverModal() {
         "clear-modal"
     ).style.display = "flex";
 
+    console.log(
+    document.getElementById(
+        "clear-modal"
+    ).style.display
+);
+
+const modalWindow =
+    document.querySelector(".modal-window");
+
+modalWindow.style.background = "yellow";
+modalWindow.style.color = "black";
+modalWindow.style.width = "300px";
+modalWindow.style.height = "300px";
+modalWindow.style.border = "10px solid red";
+
 }
 
 function nextGameOverStep() {
+
+      console.log(
+        "nextGameOverStep",
+        gameOverStep
+    );
 
     gameOverStep++;
 
@@ -851,6 +873,8 @@ function nextGameOverStep() {
     }
 
     if (gameOverStep >= 3) {
+
+        stopAllBGM();
 
         location.href =
             "title.html";
@@ -970,7 +994,10 @@ function closeClearModal() {
         "clear-modal"
     ).style.display = "none";
 
-    stopClearEvent();
+    if (clearAudio) {
+        clearAudio.pause();
+        clearAudio.currentTime = 0;
+    }
 
     playBGM("game");
 
@@ -979,6 +1006,12 @@ function closeClearModal() {
 document
     .getElementById("clear-modal")
     .addEventListener("click", () => {
+
+         console.log(
+            "clear-modal click",
+            gameOverMode,
+            gameOverStep
+        );
 
         playSE("enter");
 
