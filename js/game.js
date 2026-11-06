@@ -20,7 +20,7 @@ const gameState = {
 
     currentTemple: 1,
 
-    hp: 3,
+    hp: 10,
 
     maxHp: 10,
 
