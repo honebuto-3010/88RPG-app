@@ -275,7 +275,7 @@ function rollDice() {
     playSE("dice");
 
     const dice =
-        Math.floor(Math.random() * 6) + 1;
+        Math.floor(Math.random() * 5) + 1;
 
     gameState.lastDice = dice;
 
