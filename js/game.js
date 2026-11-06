@@ -412,9 +412,10 @@ function movePlayer(dice) {
     }
 
     const healTemples = [
-        6, //安楽寺
-        46,//浄瑠璃寺
-        57//栄福寺
+        10,//切幡寺
+        35,//清瀧寺
+        57,//栄福寺
+        78,//郷照寺
     ];
 
     if (healTemples.includes(gameState.currentTemple)) {
