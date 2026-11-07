@@ -560,7 +560,7 @@ function drawOmikuji() {
         gameState.hp++;
 
         gameState.eventLog =
-              "🎉大吉！ お接待を受けてHP+1";
+              "😁大吉！ お接待を受けてHP+1";
     }
     else if (result === 1) {
 
