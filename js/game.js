@@ -639,15 +639,18 @@ function checkSpecialEvent(previousTemple) {
             gameState.maxHp
         );
 
-        gameState.eventLog =
-            "🎉 徳島踏破！\n" +
-            "阿波踊りを楽しんだ！\n" +
-            "HPが1回復した！";
+          gameState.eventLog =
+            "💃 徳島踏破！" +
+            "まずは徳島を無事踏破した！\n" +
+            "阿波の巡礼を終えた！";
 
         showClearModal(
-           "🎉 徳島踏破",
-           "阿波踊りを楽しんだ！\nHPが1回復した！"
+           "💃 徳島踏破！",
+           "阿波踊りを楽しんだ！\n\n" +
+           "鳴門の鯛も食べた！\n\n" +
+           "✨ HPが1回復した！"
         );    
+
 
         return true;
     }
@@ -664,15 +667,18 @@ function checkSpecialEvent(previousTemple) {
             gameState.maxHp
         );
 
-        gameState.eventLog =
-            "🎉 高知踏破！\n" +
-            "カツオのたたきをご馳走になった！\n" +
-            "HPが1回復した！";
+         gameState.eventLog =
+            "🐟 高知踏破！\n" +
+            "長い土佐路を踏破した！\n" +
+            "土佐の巡礼を終えた！";
 
         showClearModal(
-            "🎉 高知踏破",
-            "修行の道場を踏破した！\nHPが2回復した！"
+            "🐟 高知踏破",
+            "よさこい祭りを楽しんだ！\n\n" +
+            "カツオのたたきを堪能した！\n\n" +
+            "✨ HPが1回復した！"
         );    
+
 
         return true;
     }
@@ -690,14 +696,17 @@ function checkSpecialEvent(previousTemple) {
         );
 
         gameState.eventLog =
-            "🎉 愛媛踏破！\n" +
-            "道後温泉で疲れを癒した！\n" +
-            "HPが2回復した！";
+            "🍊 愛媛踏破！\n" +
+            "伊予の巡礼を終えた！\n" +
+            "結願への道が見えてきた！";
 
         showClearModal(
-                "🎉 愛媛踏破",
-                "菩提の道場を踏破した！\n最大HPが1上昇した！"
+            "🍊 愛媛踏破",
+            "道後温泉で疲れを癒やした！\n\n" +
+            "しまなみ海道を眺め、みかんを堪能した！\n\n" +
+            "✨ HPが2回復した！"
         );    
+
 
 
         return true;
@@ -712,11 +721,15 @@ function checkSpecialEvent(previousTemple) {
         playClearEvent();
 
         gameState.eventLog =
-            "🎉 香川踏破！\n" +
-            "讃岐うどんを堪能した！";
+            "🍜 香川踏破目前！\n" +
+            "讃岐の巡礼はもうすぐそこだ！\n" +
+            "結願は目前だ！";
         showClearModal(
-            "🎉 香川踏破",
-            "涅槃の道場を踏破した！\n\nついに最後の札所\n大窪寺が目前だ！"
+            "🍜 香川踏破！",
+            "讃岐うどんを堪能した！\n\n" +
+            "オリーブ牛で英気を養った！\n\n" +
+            "長い巡礼の旅もいよいよ終盤！\n\n" +
+            "結願まであと少しだ！！"
         );    
 
         return true;
@@ -763,8 +776,17 @@ function nextEndingStep() {
             "clear-message"
         ).textContent =
             "あなたは\n四国遍路を結願しました。\n\n" +
-            "長い旅路の中で\n多くの札所を巡礼しました。";
 
+            "長い旅路の中で\n" +
+            "多くの札所を巡礼しました。\n\n" +
+
+            "💃 阿波踊りと鳴門の鯛。\n" +
+            "🐟 よさこい祭りとカツオ。\n" +
+            "🍊 道後温泉と伊予みかん。\n" +
+            "🍜 讃岐うどんとオリーブ牛。\n\n" +
+
+            "四国四県を巡り終えました。";
+        
         return;
     }
 
@@ -784,7 +806,7 @@ function nextEndingStep() {
             "結願回数：" +
             getClearCount() +
             "回\n\n" +
-            "ありがとうございました！";
+            "お疲れさまでした！";
 
         return;
     }
@@ -1007,12 +1029,6 @@ function closeClearModal() {
 document
     .getElementById("clear-modal")
     .addEventListener("click", () => {
-
-         console.log(
-            "clear-modal click",
-            gameOverMode,
-            gameOverStep
-        );
 
         playSE("enter");
 
