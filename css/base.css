@@ -318,6 +318,16 @@ button:hover {
 
 }
 
+#clear-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#clear-message {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
 #clear-next {
 
     margin-top: 20px;
