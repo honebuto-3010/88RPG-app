@@ -442,7 +442,8 @@ if (selected === "setting") {
 }
 
 if (selected === "quit") {
-
+     
+    stopAllBGM();
     alert(
         "またのお遍路をお待ちしております"
     );
