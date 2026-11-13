@@ -20,6 +20,8 @@ a {
 }
 
 body {
+    touch-action: manipulation; /* ダブルタップによるズームを防止 */
+    overscroll-behavior: none;  /* 引っ張って更新（バウンス）を防止 */
     background: #0038a8;
 
     color: #ffffff;
