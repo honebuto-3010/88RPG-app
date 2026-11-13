@@ -1,4 +1,4 @@
-const CACHE_NAME = "henro-rpg-v4";
+const CACHE_NAME = "henro-rpg-v5";
 
 const urlsToCache = [
     "./title.html",
