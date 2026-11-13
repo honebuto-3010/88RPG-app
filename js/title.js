@@ -525,13 +525,15 @@ document
 
     });
 console.log("登録完了")
+
 /* ==========================
    初期化
 ========================== */
+function updateBgmStatus() {
+    const btn = document.getElementById("bgm-toggle"); // ※ボタンのIDに合わせる
+    if (btn) {
+        btn.textContent = isBgmOn ? "BGM: ON" : "BGM: OFF"; // ※BGM管理用の変数に合わせる
+    }
+}
 
 updateBgmStatus();
-
-
-
-
-
