@@ -42,6 +42,8 @@ body {
     justify-content: center;
 
     align-items: center;
+    touch-action: manipulation; /* ダブルタップによるズームを防止 */
+    overscroll-behavior: none;  /* 引っ張って更新（バウンス）を防止 */
 }
 
 /* ==========================
