@@ -1027,7 +1027,7 @@ function showClearModal(title, message) {
             ch !== " " &&
             index % 4 === 0
         ) {
-            playSE("clear");
+            playSE("message");
         }
 
         index++;
