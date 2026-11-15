@@ -32,7 +32,8 @@ const se = {
     map: "sounds/map.mp3",
     setting: "sounds/setting.mp3",
     omikuji: "sounds/omikuji.mp3",
-    clear: "sounds/clear.mp3"
+    clear: "sounds/clear.mp3",
+    message: "sounds/message.mp3"
 };
 
 // ======================
