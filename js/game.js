@@ -12,6 +12,9 @@ let endingStep = 0;
 
 let gameOverMode = false;
 let gameOverStep = 0;
+
+let typingInterval;
+let isTyping = false;
 /* ===================================
    GAME STATE
 =================================== */
@@ -989,9 +992,7 @@ window.addEventListener("pagehide", () => {
     stopAllBGM();
 });
 
-
-
-function showClearModal(title,message) {
+function showClearModal(title, message) {
 
     clearModalOpen = true;
 
@@ -999,15 +1000,52 @@ function showClearModal(title,message) {
         "clear-title"
     ).textContent = title;
 
-    document.getElementById(
-        "clear-message"
-    ).textContent = message;
+    const messageElement =
+        document.getElementById("clear-message");
+
+    messageElement.textContent = "";
 
     document.getElementById(
         "clear-modal"
     ).style.display = "flex";
 
+    let index = 0;
+
+    isTyping = true;
+
+    clearInterval(typingInterval);
+
+    typingInterval = setInterval(() => {
+
+        const ch = message.charAt(index);
+
+        messageElement.textContent += ch;
+        
+        // メッセージ送り音
+        if (
+            ch !== "\n" &&
+            ch !== " " &&
+            index % 4 === 0
+        ) {
+            playSE("message");
+        }
+
+        index++;
+
+        if (index >= message.length) {
+
+            clearInterval(typingInterval);
+
+            isTyping = false;
+            //文字送り完了音
+            playSE("enter");
+
+        }
+
+    }, 100);
+
 }
+
 
 function closeClearModal() {
 
