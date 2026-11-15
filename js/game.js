@@ -993,7 +993,6 @@ window.addEventListener("pagehide", () => {
 });
 
 function showClearModal(title, message) {
-    console.log("showClearModal開始");
     clearModalOpen = true;
 
     document.getElementById(
@@ -1016,7 +1015,6 @@ function showClearModal(title, message) {
     clearInterval(typingInterval);
 
     typingInterval = setInterval(() => {
-        console.log(index);
         const ch = message.charAt(index);
 
         messageElement.textContent += ch;
