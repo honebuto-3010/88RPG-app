@@ -1023,7 +1023,7 @@ function showClearModal(title, message) {
         if (
             ch !== "\n" &&
             ch !== " " &&
-            index % 4 === 0
+            index % 6 === 0
         ) {
             playSE("message");
         }
@@ -1040,7 +1040,7 @@ function showClearModal(title, message) {
 
         }
 
-    }, 100);
+    }, 150);
 
 }
 
