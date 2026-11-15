@@ -1025,7 +1025,7 @@ function showClearModal(title, message) {
         if (
             ch !== "\n" &&
             ch !== " " &&
-            index % 4 === 0
+            index % 6 === 0
         ) {
             playSE("message");
         }
